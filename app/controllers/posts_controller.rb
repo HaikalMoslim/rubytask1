@@ -10,6 +10,7 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
 =======
     @posts = user_signed_in? ? Post.sorted : Post.published.sorted
+    
   end
   def show
 >>>>>>> a2048b7 (New task for ruby)
