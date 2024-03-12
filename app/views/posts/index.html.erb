@@ -7,10 +7,22 @@
   <% @posts.each do |post|%>
     <div>
     <%unless post.archived?%>
+<<<<<<< HEAD
     <li>
       <h2><%= link_to post.title, post%></h2>
     </li>
     <%end%>
+=======
+      <h2><%= link_to post.title, post%></h2>
+      <% if post.draft? %>
+        <div class="p-2 rounded bg-gray-100 text-gray-900">Draft</div>
+      <% else if post.scheduled? %>
+        <div class="p-2 rounded bg-blue-100 text-blue-900">Scheduled</div>
+      <%end%>
+    <%end%>
+  <%end%>
+   <%= post.body%>
+>>>>>>> a2048b7 (New task for ruby)
     </div>
   <%end%>
   </ul>

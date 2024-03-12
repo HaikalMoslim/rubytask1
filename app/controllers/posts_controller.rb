@@ -3,10 +3,16 @@ class PostsController < ApplicationController
   before_action :set_post, except: [:index, :new, :create] 
   
   def index
+<<<<<<< HEAD
     @posts = Post.all
   end
   def show
     @post = Post.find(params[:id])
+=======
+    @posts = user_signed_in? ? Post.sorted : Post.published.sorted
+  end
+  def show
+>>>>>>> a2048b7 (New task for ruby)
   end
   def new
     @post = Post.new
@@ -43,10 +49,17 @@ class PostsController < ApplicationController
   
   private
     def post_params
+<<<<<<< HEAD
       params.require(:post).permit(:title, :body, :status)
     end
     def set_post
       @post = Post.find(params[:id])
+=======
+      params.require(:post).permit(:title, :body, :status, :published_at)
+    end
+    def set_post
+      @post =  user_signed_in? ? Post.find(params[:id]) : Post.published.find(params[:id])
+>>>>>>> a2048b7 (New task for ruby)
     rescue ActiveRecord::RecordNotFound
       redirect_to root_path
     end
