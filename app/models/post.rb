@@ -13,7 +13,7 @@ include Visible
     def archived?
         status == 'archived'
     end
-    scope :sorted, ->{ order(published_at: :desc, updated_at: :desc)}
+    scope :sorted, ->{ order(arel_table[:published_at].desc.nulls_last).order(updated_at: :desc)}
     scope :draft, -> {where(published_at: nil)}
     scope :published, -> {where("published_at <= ?", Time.current)}
     scope :scheduled, -> {where("published_at > ?", Time.current)}
