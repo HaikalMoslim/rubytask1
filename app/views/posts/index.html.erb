@@ -1,0 +1,19 @@
+<div>
+  <h1>My Blog</h1>
+
+  Our blog has <%= Post.public_count%> articles and counting!
+
+  <ul>
+  <% @posts.each do |post|%>
+    <div>
+    <%unless post.archived?%>
+    <li>
+      <h2><%= link_to post.title, post%></h2>
+    </li>
+    <%end%>
+    </div>
+  <%end%>
+  </ul>
+
+  <%= link_to "New Post", new_post_path if user_signed_in?%>
+</div>
