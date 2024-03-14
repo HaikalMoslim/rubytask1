@@ -4,6 +4,12 @@ class PostsController < ApplicationController
   
   def index
     @posts = user_signed_in? ? Post.sorted : Post.published.sorted
+    @pagy, @posts = pagy(Post.all)
+  rescue Pagy::OverflowError
+    redirect_to root_path(page: 1)
+
+    # params[:page] = 1
+    # retry
   end
   def show
   end
@@ -38,7 +44,7 @@ class PostsController < ApplicationController
   
   private
     def post_params
-      params.require(:post).permit(:title, :body, :status, :published_at)
+      params.require(:post).permit(:title, :content, :status, :published_at)
     end
     def set_post
       @post =  user_signed_in? ? Post.find(params[:id]) : Post.published.find(params[:id])

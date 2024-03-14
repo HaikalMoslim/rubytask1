@@ -15,10 +15,16 @@
         <div class="p-2 rounded bg-blue-100 text-blue-900">Scheduled</div>
       <%end%>
     <%end%>
-   <%= post.body%>
+   <%= post.content%>
     </div>
   <%end%>
   </ul>
 
   <%= link_to "New Post", new_post_path if user_signed_in?%>
 </div>
+
+<%if @pagy.count > @pagy.items%>
+<div class="my-16">
+<%== pagy_nav(@pagy)%>
+</div>
+<%end%>
