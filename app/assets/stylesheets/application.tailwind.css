@@ -2,36 +2,28 @@
 @tailwind components;
 @tailwind utilities;
 
-/*
-
-@layer components {
-  .btn-primary {
-    @apply py-2 px-4 bg-blue-200;
-  }
+.pagy-nav.pagination {
+  @apply flex justify-center; /* Center horizontally */
+  @apply -space-x-px rounded-md shadow-sm;
 }
 
-*/
-.pagy {
-  @apply flex space-x-1 font-semibold text-sm text-gray-500;
-  .page {
-    a {
-      @apply block rounded-lg px-3 py-1 bg-gray-200;
-      &:hover {
-        @apply bg-gray-300;
-      }
-    }
-    &.active a {
-      @apply text-white bg-gray-400 cursor-default;
-    }
-    &.disabled a {
-      @apply text-gray-300 bg-gray-100 cursor-default;
-    }
-    &.gap { }  /* if you need to customize it */
-  }
-  .pagy-combo-input, &.pagy-items-selector-js {
-    @apply inline-block whitespace-nowrap bg-gray-200 rounded-lg px-3 py-0.5;
-    input {
-      @apply bg-gray-100 border-none rounded-md;
-    }
-  }
+.page {
+  /* Remove 'inline-flex' to allow centering within the parent */
+  @apply inline-block;
+}
+
+.page.next a, .page.prev a {
+  @apply relative inline-block items-center rounded-md border border-gray-300 bg-white px-2 py-2 text-sm font-medium text-gray-500 hover:bg-gray-50 focus:z-20;
+}
+
+.page.next.disabled, .page.prev.disabled {
+  @apply relative inline-block items-center rounded-md border border-gray-300 bg-slate-100 px-2 py-2 text-sm font-medium text-gray-500 hover:bg-gray-50 focus:z-20;
+}
+
+.page a, .page.gap {
+  @apply bg-white border-gray-300 text-gray-500 hover:bg-gray-50 relative inline-block items-center border px-4 py-2 text-sm font-medium focus:z-20;
+}
+
+.page.active {
+  @apply z-10 border-indigo-500 bg-indigo-50 text-indigo-600 relative inline-block items-center border px-4 py-2 text-sm font-medium focus:z-20;
 }

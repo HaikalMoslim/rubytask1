@@ -13,6 +13,13 @@ user.update!(
     password_confirmation: "password"
 )
 
+VALID_STATUSES = ['public', 'private', 'archived']
 100.times do |i|
-    Post.create({title: "Post #{i}", content: "Hello world", published_at: Time.current})
+    status = VALID_STATUSES.sample
+    Post.create(
+      title: "Post #{i}",
+      content: "Hello world",
+      published_at: Time.current,
+      status: status 
+    )
   end

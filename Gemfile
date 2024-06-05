@@ -70,8 +70,8 @@ group :test do
 end
 
 
-gem "devise", "~> 4.9"
+gem "devise"
 gem "aws-sdk-s3", require: false
 
 
-gem "pagy", "~> 7.0"
+gem "pagy"

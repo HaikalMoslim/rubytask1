@@ -1,30 +1,27 @@
 <div>
   <h1>My Blog</h1>
 
-  Our blog has <%= Post.public_count%> articles and counting!
+  Our blog has <%= Post.public_count %> articles and counting!
 
-  <ul>
-  <% @posts.each do |post|%>
-    <div>
-    <%unless post.archived?%>
-    <%end%>
-      <h2><%= link_to post.title, post%></h2>
-      <% if post.draft? %>
-        <div class="p-2 rounded bg-gray-100 text-gray-900">Draft</div>
-      <% else if post.scheduled? %>
-        <div class="p-2 rounded bg-blue-100 text-blue-900">Scheduled</div>
-      <%end%>
-    <%end%>
-   <%= post.content%>
-    </div>
-  <%end%>
-  </ul>
+    <% @posts.each do |post| %>
+      <% unless post.archived? %>
+        <div>
+          <h2><%= link_to post.title, post %></h2>
+          <% if post.draft? %>
+            <div class="p-2 rounded bg-gray-100 text-gray-900">Draft</div>
+          <% elsif post.scheduled? %>
+            <div class="p-2 rounded bg-blue-100 text-blue-900">Scheduled</div>
+          <% end %>
+          <%= post.content %>
+        </div>
+      <% end %>
+    <% end %>
 
-  <%= link_to "New Post", new_post_path if user_signed_in?%>
+  <%= link_to "New Post", new_post_path if user_signed_in? %>
 </div>
 
-<%if @pagy.count > @pagy.items%>
-<div class="my-16">
-<%== pagy_nav(@pagy)%>
-</div>
-<%end%>
+<% if @pagy.count > @pagy.items %>
+  <div class="my-16">
+    <%== pagy_nav(@pagy) %>
+  </div>
+<% end %>

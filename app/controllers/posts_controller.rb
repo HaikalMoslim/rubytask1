@@ -4,7 +4,7 @@ class PostsController < ApplicationController
   
   def index
     @posts = user_signed_in? ? Post.sorted : Post.published.sorted
-    @pagy, @posts = pagy(Post.all)
+    @pagy, @posts = pagy(Post.all, items: 10)
   rescue Pagy::OverflowError
     redirect_to root_path(page: 1)
 
